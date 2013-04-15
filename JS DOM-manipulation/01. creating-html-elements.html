@@ -1,0 +1,163 @@
+﻿<!DOCTYPE html>
+<!DOCTYPE html>
+
+<!--Write a script that creates a number of div elements.Each div element must have the following
+Random width and height between 20px and 100px
+Random background color
+Random font color
+Random position on the screen (position:absolute)
+A strong element with text "div" inside the div
+Random border-radius
+Random border color
+Random border-width between 1px and 20px-->
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>DOM Manipulation - Creating HTML elements</title>
+    <style>
+        .bt {
+            -moz-box-shadow: inset 0px 1px 0px 0px #bbdaf7;
+            -webkit-box-shadow: inset 0px 1px 0px 0px #bbdaf7;
+            box-shadow: inset 0px 1px 0px 0px #bbdaf7;
+            background: -webkit-gradient( linear, left top, left bottom, color-stop(0.05, #79bbff), color-stop(1, #378de5) );
+            background: -moz-linear-gradient( center top, #79bbff 5%, #378de5 100% );
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#79bbff', endColorstr='#378de5');
+            background-color: #79bbff;
+            -moz-border-radius: 6px;
+            -webkit-border-radius: 6px;
+            border-radius: 6px;
+            border: 1px solid #84bbf3;
+            display: inline-block;
+            color: #ffffff;
+            font-family: arial;
+            font-size: 15px;
+            font-weight: bold;
+            padding: 6px 24px;
+            text-decoration: none;
+            text-shadow: 1px 1px 0px #528ecc;
+        }
+
+            .bt:hover {
+                background: -webkit-gradient( linear, left top, left bottom, color-stop(0.05, #378de5), color-stop(1, #79bbff) );
+                background: -moz-linear-gradient( center top, #378de5 5%, #79bbff 100% );
+                filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#378de5', endColorstr='#79bbff');
+                background-color: #378de5;
+            }
+
+            .bt:active {
+                position: relative;
+                top: 1px;
+            }
+
+
+        #content div.colored {
+            border: 1px solid black;
+            margin: 5px;
+            padding: 0;
+            display: inline-block;
+            *display: inline;
+            zoom: 1;
+        }
+
+            #content div.colored:nth-of-type(2n+1) {
+                border-color: lightblue;
+            }
+    </style>
+</head>
+<body>
+    <input type="text" id="tb-box-count" />
+    <a href="#" class="bt" id="generate-boxes-btn" onclick="onGenerateDivClick()">Generate boxes</a>
+
+    <div id="content">
+        <!-- Content here !!! -->
+    </div>
+
+    <script>
+
+        function onGenerateDivClick() {
+
+            var contentDiv = document.getElementById("content");
+
+            //removing previous divs
+
+            while (contentDiv.firstChild) {
+                contentDiv.removeChild(contentDiv.firstChild);
+            }
+            //=======================================================
+
+            var count = (document.getElementById("tb-box-count").value | 0) || 5;
+
+            for (var i = 0; i < count; i++) {
+                var div = document.createElement("div");
+
+                generateStyle(div);
+
+                var node = document.createElement("STRONG");
+                var textnode = document.createTextNode("text");
+
+                node.appendChild(textnode);
+                div.appendChild(node);
+
+                contentDiv.appendChild(div);
+            }
+
+            return false;
+        }
+
+        function generateStyle(div) {
+
+            var width = getRandom(20, 100);
+            div.style.width = width + "px";
+
+            var height = getRandom(20, 100);
+            div.style.height = height + "px";
+            //div.classList.add("colored");
+
+            var radius = getRandom(1, 15);
+            div.style.borderRadius = radius + "px";
+
+            var borderWidth = getRandom(2, 10);
+
+            div.style.border = "solid";
+
+            div.style.borderWidth = borderWidth + "px";
+
+            div.style.borderColor = generateRandomColor();
+
+            div.style.backgroundColor = generateRandomColor();
+
+            div.style.position = "absolute";
+
+            var maxWidth = screen.width - 200;
+            var maxHeight = screen.height - 300;
+
+            var topPos = parseInt(Math.random() * maxHeight) + 50;
+            div.style.top = topPos + "px";
+            var left = parseInt(Math.random() * maxWidth) + 50;
+            div.style.left = left + "px";
+        }
+
+
+        function generateRandomColor() {
+            var red = (Math.random() * 256) | 0;
+            var green = (Math.random() * 256) | 0;
+            var blue = (Math.random() * 256) | 0;
+
+            return "rgb(" + red + "," + green + "," + blue + ")";
+        }
+
+      
+
+        function getRandom(min, max) {
+            return (Math.random() * (max - min) + min) | 0;;
+        }
+
+       
+     
+
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<!DOCTYPE html>
+
+<!--Create a text area and two inputs with type="color"
+Make the font color of the text area as the value of the first color input
+Make the background color of the text area as the value of the second input-->
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Text area</title>
+
+</head>
+<body>
+
+<form name="myForm" action="04 text area.html">
+
+    <input type="color" name="font_color" onchange="changeB()"/>
+
+    <input type="color" name="background_color"onchange="changeB()"/>
+
+</form>
+
+
+<br />
+<textarea rows="10" cols="50">
+    At w3schools.com you will learn how to make a website.
+     We offer free tutorials in all web development technologies.
+</textarea>
+
+      <script>
+    
+          function changeB() {
+              var textarea = document.getElementsByTagName('textarea')[0];
+              textarea.style.color = document.getElementsByName('font_color')[0].value;
+              textarea.style.backgroundColor = document.getElementsByName('background_color')[0].value;
+          }
+
+    </script>
+   
+</body>
+</html>

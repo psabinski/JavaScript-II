@@ -1,0 +1,150 @@
+﻿<!DOCTYPE html>
+<!DOCTYPE html>
+ <style>
+        .bt {
+            -moz-box-shadow: inset 0px 1px 0px 0px #bbdaf7;
+            -webkit-box-shadow: inset 0px 1px 0px 0px #bbdaf7;
+            box-shadow: inset 0px 1px 0px 0px #bbdaf7;
+            background: -webkit-gradient( linear, left top, left bottom, color-stop(0.05, #79bbff), color-stop(1, #378de5) );
+            background: -moz-linear-gradient( center top, #79bbff 5%, #378de5 100% );
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#79bbff', endColorstr='#378de5');
+            background-color: #79bbff;
+            -moz-border-radius: 6px;
+            -webkit-border-radius: 6px;
+            border-radius: 6px;
+            border: 1px solid #84bbf3;
+            display: inline-block;
+            color: #ffffff;
+            font-family: arial;
+            font-size: 15px;
+            font-weight: bold;
+            padding: 6px 24px;
+            text-decoration: none;
+            text-shadow: 1px 1px 0px #528ecc;
+        }
+
+            .bt:hover {
+                background: -webkit-gradient( linear, left top, left bottom, color-stop(0.05, #378de5), color-stop(1, #79bbff) );
+                background: -moz-linear-gradient( center top, #378de5 5%, #79bbff 100% );
+                filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#378de5', endColorstr='#79bbff');
+                background-color: #378de5;
+            }
+
+            .bt:active {
+                position: relative;
+                top: 1px;
+            }
+
+
+     </style>
+
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Moving divs in a circle</title>
+
+</head>
+<body>
+   
+ Enter the number of boxes:<input type="text" id="tb-box-count" />
+ <a href="#" class="bt" id="generate-boxes-btn" onclick="init()">Generate boxes</a>
+    
+    <div id="rotator">
+    </div>
+
+    <script>
+
+        rotateAngle = 0;
+
+        
+
+        function GenerateDivs(count) {
+
+            var div = document.getElementById('rotator');
+
+            for (var i = 0; i < count; i++) {
+                var innerDiv = document.createElement('div');
+               // var textnode = document.createTextNode(i);
+                
+
+                //innerDiv.appendChild(textnode);
+                innerDiv.style.backgroundColor = generateRandomColor();
+                innerDiv.style.height = '40px';
+                innerDiv.style.width = '40px'
+                innerDiv.style.textAlign = 'center';
+
+                div.appendChild(innerDiv);
+            }
+            
+           
+        }
+        //--------------------------------------
+       
+
+        function init() {
+
+            var count = (document.getElementById("tb-box-count").value | 0) || 5;
+
+            GenerateDivs(count);
+
+            myTimeoutFunction();
+        }
+
+        function myTimeoutFunction() {
+           
+
+            var div = document.getElementById('rotator');
+            GetFrame(div)
+            setTimeout(myTimeoutFunction, 90);
+        }
+
+        //window.onload = init;
+
+        
+     
+      
+            //=============================================
+        function GetFrame(div) {
+                    
+                    
+                    var end = div.childNodes.length;
+
+                    for (var i = 1; i < end; i++) {
+    
+          
+                        var angle = rotateAngle + ((i-1) * (Math.PI*2 / (div.childNodes.length-1)));
+
+                        var x = (180 * Math.cos(angle) + 250);
+                        var y = (180 * Math.sin(angle) + 250);
+                       
+                        div.childNodes[i].style.position = 'absolute';
+                        div.childNodes[i].style.left = x + 'px';
+                        div.childNodes[i].style.top = y + 'px';
+                        rotateAngle+=0.005;
+                        if (rotateAngle==1) {
+                            rotateAngle = 0;
+                        }
+                        //window.setTimeout(function () { GetFrame(div); }, 200);
+                                       
+                    
+                }
+
+            
+
+
+
+        }
+        function generateRandomColor() {
+            var red = (Math.random() * 256) | 0;
+            var green = (Math.random() * 256) | 0;
+            var blue = (Math.random() * 256) | 0;
+
+            return "rgb(" + red + "," + green + "," + blue + ")";
+        }
+
+
+    </script>
+</body>
+</html>
