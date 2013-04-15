@@ -84,7 +84,6 @@ Random border-width between 1px and 20px-->
             while (contentDiv.firstChild) {
                 contentDiv.removeChild(contentDiv.firstChild);
             }
-            //=======================================================
 
             var count = (document.getElementById("tb-box-count").value | 0) || 5;
 
@@ -112,7 +111,6 @@ Random border-width between 1px and 20px-->
 
             var height = getRandom(20, 100);
             div.style.height = height + "px";
-            //div.classList.add("colored");
 
             var radius = getRandom(1, 15);
             div.style.borderRadius = radius + "px";
@@ -146,8 +144,6 @@ Random border-width between 1px and 20px-->
 
             return "rgb(" + red + "," + green + "," + blue + ")";
         }
-
-      
 
         function getRandom(min, max) {
             return (Math.random() * (max - min) + min) | 0;;

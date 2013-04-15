@@ -39,8 +39,6 @@
      </style>
 
 
-
-
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>Moving divs in a circle</title>
@@ -58,31 +56,22 @@
 
         rotateAngle = 0;
 
-        
-
         function GenerateDivs(count) {
 
             var div = document.getElementById('rotator');
 
             for (var i = 0; i < count; i++) {
                 var innerDiv = document.createElement('div');
-               // var textnode = document.createTextNode(i);
-                
-
-                //innerDiv.appendChild(textnode);
+             
                 innerDiv.style.backgroundColor = generateRandomColor();
                 innerDiv.style.height = '40px';
                 innerDiv.style.width = '40px'
                 innerDiv.style.textAlign = 'center';
 
                 div.appendChild(innerDiv);
-            }
-            
-           
+            }        
         }
-        //--------------------------------------
-       
-
+    
         function init() {
 
             var count = (document.getElementById("tb-box-count").value | 0) || 5;
@@ -100,20 +89,13 @@
             setTimeout(myTimeoutFunction, 90);
         }
 
-        //window.onload = init;
-
-        
-     
-      
-            //=============================================
         function GetFrame(div) {
                     
                     
                     var end = div.childNodes.length;
 
                     for (var i = 1; i < end; i++) {
-    
-          
+        
                         var angle = rotateAngle + ((i-1) * (Math.PI*2 / (div.childNodes.length-1)));
 
                         var x = (180 * Math.cos(angle) + 250);
@@ -126,14 +108,8 @@
                         if (rotateAngle==1) {
                             rotateAngle = 0;
                         }
-                        //window.setTimeout(function () { GetFrame(div); }, 200);
-                                       
-                    
+                     
                 }
-
-            
-
-
 
         }
         function generateRandomColor() {
